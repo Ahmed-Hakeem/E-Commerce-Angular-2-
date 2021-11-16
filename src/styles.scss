@@ -1,0 +1,28 @@
+/**********color-schema**************/
+
+$main: #e60000;
+$main-foreground: black;
+$second: #fff;
+$gray: hsla(0, 0%, 40%, 0.5);
+$gray-disabled: #b5b5b5;
+
+/*********fonts*******************/
+@font-face {
+  font-family: "Vodafone";
+  font-style: normal;
+  font-weight: normal;
+  src: local("assets/fonts/Vodafone.ttf"),
+    url("assets/fonts/Vodafone.ttf") format("tff");
+}
+@font-face {
+  font-family: "Vodafone-Bold";
+  font-style: normal;
+  font-weight: normal;
+  src: local("assets/fonts/Vodafone ExtraBold.ttf"),
+    url("assets/fonts/Vodafone\ ExtraBold.ttf") format("tff");
+}
+
+* {
+  margin: 0px;
+  box-sizing: border-box;
+}
