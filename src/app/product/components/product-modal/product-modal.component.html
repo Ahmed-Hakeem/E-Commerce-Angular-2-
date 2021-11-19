@@ -1,0 +1,118 @@
+<div
+  class="modal-container"
+  [ngClass]="{
+    'fade bd-example-modal-lg modal': !inEditMode && !isAddMode
+  }"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myLargeModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" *ngIf="!inEditMode && !isAddMode">
+      <img [src]="product.image" alt="{{ product?.title }}" />
+      <h6 class="title">{{ product.title }}</h6>
+      <p class="price">{{ product.price | currency }}</p>
+      <p class="description">
+        {{ product.description }}
+      </p>
+      <p *ngIf="!inEditMode && !isAddMode">
+        <span *ngFor="let star of starList">
+          <i class="{{ star }} star-icon"></i>
+        </span>
+      </p>
+      <p><button>Add to Cart</button></p>
+    </div>
+
+    <form
+      class="modal-content p-5"
+      *ngIf="inEditMode || isAddMode"
+      [formGroup]="form"
+      (ngSubmit)="onSubmit()"
+    >
+      <div>
+        <div class="inputContainer">
+          <label for="image" class="inputLabel">{{
+            "image" | translate
+          }}</label>
+          <input
+            formControlName="image"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.image.errors }"
+          />
+          <div
+            *ngIf="submitted && f.image.errors"
+            class="invalid-feedback text-danger"
+          >
+            <div *ngIf="f.image.errors.required" class="text-danger">
+              {{ "ImageValidationMsg" | translate }}
+            </div>
+          </div>
+        </div>
+        <div class="inputContainer">
+          <label for="title" class="inputLabel">{{
+            "title" | translate
+          }}</label>
+          <input
+            formControlName="title"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.title.errors }"
+          />
+          <div
+            *ngIf="submitted && f.title.errors"
+            class="invalid-feedback text-danger"
+          >
+            <div class="text-danger" *ngIf="f.title.errors.required">
+              {{ "titleValidationMsg" | translate }}
+            </div>
+          </div>
+        </div>
+        <div class="inputContainer">
+          <label for="price" class="inputLabel">{{
+            "price" | translate
+          }}</label>
+          <input
+            formControlName="price"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.price.errors }"
+          />
+          <div
+            *ngIf="submitted && f.price.errors"
+            class="invalid-feedback text-danger"
+          >
+            <div class="text-danger" *ngIf="f.price.errors.required">
+              {{ "priceValidationMsg" | translate }}
+            </div>
+          </div>
+        </div>
+        <div class="inputContainer">
+          <label for="description" class="inputLabel">{{
+            "description" | translate
+          }}</label>
+          <input
+            formControlName="description"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.description.errors }"
+          />
+          <div *ngIf="submitted && f.description.errors">
+            <div class="text-danger" *ngIf="f.description.errors.required">
+              {{ "descriptionValidationMsg" | translate }}
+            </div>
+          </div>
+        </div>
+
+        <button
+          [disabled]="loading"
+          [ngClass]="{ success: processSuccess }"
+          class="btn btn-primary"
+        >
+          <span
+            *ngIf="loading"
+            class="spinner-border spinner-border-sm mr-1"
+          ></span>
+          Save
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

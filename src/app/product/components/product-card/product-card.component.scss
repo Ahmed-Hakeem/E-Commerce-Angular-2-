@@ -1,0 +1,68 @@
+.cards {
+  cursor: pointer;
+  max-width: 230px;
+  padding: 20px;
+  text-align: center;
+  font-family: arial;
+  border-radius: 15px;
+  margin: 0px 10px;
+  transition: cubic-bezier(0.25, 0.46, 0.45, 0.94) 300ms;
+  button.addToCartBtn {
+    visibility: hidden;
+    transition: cubic-bezier(0.25, 0.46, 0.45, 0.94) 100ms;
+  }
+  &:hover {
+    button {
+      background-color: var(--main);
+      visibility: visible;
+    }
+    box-shadow: 0 32px 64px 0 var(--gray);
+  }
+  .title {
+    margin: 20px;
+    height: 50px;
+    font-size: 14px;
+    font-family: sans-serif;
+  }
+  .imageContainer {
+    width: 100px;
+    height: 180px;
+    border-radius: 10px;
+    background-color: var(--gray-disabled);
+    margin: 0px auto;
+    img {
+      width: 100px;
+      height: 180px;
+      border-radius: 10px;
+      background-color: var(--gray-disabled);
+    }
+  }
+  .price {
+    color: grey;
+    font-size: 19px;
+  }
+  .description {
+    height: 50px;
+    font-size: 11px;
+    color: var(--gray-disabled);
+    margin-bottom: 19px;
+    .btn {
+      font-size: 11px;
+    }
+  }
+  button {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: var(--second);
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    border-radius: 5px;
+    background-color: var(--main-light);
+  }
+  .star-icon {
+    color: gold;
+  }
+}

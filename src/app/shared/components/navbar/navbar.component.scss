@@ -1,0 +1,117 @@
+.navbar {
+  padding: 21px 0px 14px 0px;
+  background-color: var(--second);
+  color: var(--main);
+  border-bottom: 1px solid var(--main);
+  position: relative;
+
+  .navbar-brand {
+    margin-right: 130px;
+
+    img {
+      width: 112px;
+      height: 30px;
+    }
+  }
+  .navItemContainer {
+    width: 100px;
+  }
+
+  .nav-item {
+    height: 29px;
+    text-align: center;
+  }
+  .nav-link {
+    line-height: 15px;
+    font-size: 13px;
+    padding: 8px 7px;
+    border-radius: 14.48px;
+    color: var(--main);
+
+    &:hover {
+      background-color: var(--main);
+      color: var(--second);
+    }
+  }
+  .navbar-toggler {
+    color: var(--second);
+    background-color: var(--main);
+
+    .navbar-toggler-icon {
+      color: var(--second);
+    }
+  }
+  .signOutBtn {
+    // width : 440px
+    width: 100%;
+  }
+
+  .cart-basket {
+    font-size: 0.6rem;
+    position: absolute;
+    top: -6px;
+    right: -13px;
+    width: 15px;
+    height: 15px;
+    color: #fff;
+    background-color: #418deb;
+    border-radius: 50%;
+  }
+
+  .langSelect {
+    height: 36px;
+  }
+}
+
+@mixin themedStyle($start, $end) {
+  .iconsContainer {
+    margin-#{$start}: auto;
+  }
+}
+.ltr {
+  $start: left;
+  $end: right;
+  @include themedStyle($start, $end);
+}
+.rtl {
+  $start: right;
+  $end: left;
+  @include themedStyle($start, $end);
+}
+/***********media-query***********/
+
+@media (max-width: 992px) {
+  .navbar {
+    .nav-item {
+      text-align: left;
+      width: 100%;
+    }
+    .navItemContainer {
+      width: 100%;
+    }
+    .nav-link {
+      border-radius: 4px;
+    }
+  }
+  .rtl {
+    $start: right;
+    $end: left;
+    .profile {
+      margin-#{$start}: 0px !important;
+    }
+    .navbar-brand {
+      margin-#{$end}: auto !important;
+    }
+  }
+  .ltr {
+    $start: left;
+    $end: right;
+
+    .profile {
+      margin-#{$start}: 0px !important;
+    }
+    .navbar-brand {
+      margin-#{$end}: auto !important;
+    }
+  }
+}

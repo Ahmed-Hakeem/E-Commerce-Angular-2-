@@ -1,0 +1,70 @@
+<div class="product-table-container">
+  <div class="justify-content-end align-items-center d-flex m-5">
+    <select
+      class="categories form-select w-25 mx-5"
+      [(ngModel)]="currentCategory"
+      (change)="filterProducts(currentCategory)"
+    >
+      <option value="" selected class="list-group-item">All Categories</option>
+      <option
+        class="list-group-item"
+        value="{{ category }}"
+        *ngFor="let category of categories$ | async"
+      >
+        {{ category }}
+      </option>
+    </select>
+    <button class="btn btn-danger text-white addNewBtn" (click)="addProduct()">
+      <i class="fa fa-plus-circle mx-1 text-white" aria-hidden="true"></i
+      >{{ "AddNew" | translate }}
+    </button>
+
+    <!-- <input type="text" [ngModel]="searchQuery" /> -->
+  </div>
+  <mat-table
+    class="table-container"
+    #table
+    [dataSource]="dataSource"
+    [hidden]="areProductsLoading"
+  >
+    <ng-container
+      *ngFor="let column of columns; let last = last"
+      [matColumnDef]="column.columnDef"
+    >
+      <mat-header-cell *matHeaderCellDef title="{{ column.header }}">{{
+        column.header
+      }}</mat-header-cell>
+      <mat-cell *matCellDef="let row" title="{{ column.cell(row) }}"
+        >{{ column.cell(row) | trim: (last ? 20 : 40)
+        }}<span class="mx-3 d-flex flex-nowrap" *ngIf="last"
+          ><i (click)="editProduct(row)" class="fas fa-edit mx-2 edit-icon"></i>
+          <i (click)="deleteProduct(row.id)" class="fa fa-trash trash-icon"></i
+        ></span>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"> </mat-row>
+  </mat-table>
+
+  <mat-paginator
+    [hidden]="areProductsLoading"
+    showFirstLastButtons
+    appPagination
+    [length]="filterProducts.length"
+    [pageSize]="5"
+    aria-label="Select page of periodic elements"
+  >
+  </mat-paginator>
+  <div
+    class="
+      product-table-container
+      d-flex
+      justify-content-center
+      align-items-start
+      pt-5
+    "
+    *ngIf="areProductsLoading"
+  >
+    <span class="spinner-border spinner-border-sm mr-1"></span>
+  </div>
+</div>

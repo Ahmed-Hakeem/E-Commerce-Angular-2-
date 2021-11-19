@@ -1,0 +1,99 @@
+<nav
+  class="navbar navbar-expand-lg navbar-dark"
+  [ngClass]="'currentTheme' | translate"
+>
+  <div class="container">
+    <a class="navbar-brand" href="#"
+      ><img src="../assets/images/Vodafone-logo.svg.png"
+    /></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div
+      class="collapse navbar-collapse lms-flex lms-align-center"
+      id="navbarSupportedContent"
+    >
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <div class="navItemContainer">
+            <a class="nav-link" href="#">{{ "AboutUs" | translate }}</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <div class="navItemContainer">
+            <a class="nav-link" href="#">{{ "Home" | translate }}</a>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <div class="navItemContainer">
+            <a class="nav-link active" href="#">{{
+              "ContactUs" | translate
+            }}</a>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <div class="navItemContainer">
+            <a class="nav-link" href="#">{{ "ContactUs" | translate }}</a>
+          </div>
+        </li>
+      </ul>
+      <div
+        class="
+          col-4
+          d-flex
+          justify-content-end
+          align-items-center
+          iconsContainer
+        "
+      >
+        <a class="text-muted" href="#">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="mx-3"
+          >
+            <circle cx="10.5" cy="10.5" r="7.5"></circle>
+            <line x1="21" y1="21" x2="15.8" y2="15.8"></line>
+          </svg>
+        </a>
+        <i class="fas fa-cart-plus position-relative">
+          <span
+            class="cart-basket d-flex align-items-center justify-content-center"
+          >
+            0
+          </span>
+        </i>
+
+        <select
+          class="form-select mx-4 langSelect"
+          (change)="toggleLang($event)"
+          [(ngModel)]="currentLang"
+        >
+          <option class="" value="{{ languages.en }}">English</option>
+          <option class="" value="{{ languages.ar }}">Arabic</option>
+        </select>
+        <button class="btn signOutBtn btn-outline-secondary" (click)="logout()">
+          {{ "SignOut" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>

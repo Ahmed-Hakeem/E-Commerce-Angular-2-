@@ -1,28 +1,81 @@
-/**********color-schema**************/
+/*********libraries***************/
+@import url("~bootstrap/dist/css/bootstrap.css");
+/**********add themes*****************/
+.ltr {
+  @import "./themes/_en.scss";
+}
 
-$main: #e60000;
-$main-foreground: black;
-$second: #fff;
-$gray: hsla(0, 0%, 40%, 0.5);
-$gray-disabled: #b5b5b5;
-
+.rtl {
+  @import "./themes/_ar.scss";
+}
 /*********fonts*******************/
-@font-face {
-  font-family: "Vodafone";
-  font-style: normal;
-  font-weight: normal;
-  src: local("assets/fonts/Vodafone.ttf"),
-    url("assets/fonts/Vodafone.ttf") format("tff");
-}
-@font-face {
-  font-family: "Vodafone-Bold";
-  font-style: normal;
-  font-weight: normal;
-  src: local("assets/fonts/Vodafone ExtraBold.ttf"),
-    url("assets/fonts/Vodafone\ ExtraBold.ttf") format("tff");
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
+$Roboto-Font: "Roboto";
+/**********color-schema**************/
+:root {
+  --main: #e60000;
+  --main-foreground: black;
+  --main-light: #ee9d9d;
+  --main-extra-light: #fae6e6;
+  --main-midLight: #d65858;
+  --second: #fff;
+  --gray: hsla(0, 0%, 40%, 0.5);
+  --gray-disabled: #b5b5b5;
 }
 
+/************Global-styles**********/
 * {
   margin: 0px;
+  justify-content: center;
+
   box-sizing: border-box;
+  font-family: $Roboto-Font, sans-serif;
+
+  color: var(--main-foreground);
+
+  &:disabled {
+    color: var(--gray-disabled);
+  }
+  a {
+    text-decoration: none;
+  }
+  i {
+    display: inline-block;
+  }
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+button {
+  background: none;
+  padding: 0px;
+  border: 0px;
+  cursor: pointer;
+}
+select {
+  cursor: pointer;
+}
+button {
+  background-color: var(--main);
+  color: var(--second);
+  &:focus,
+  &:active {
+    outline: none;
+  }
+  &:disabled {
+    background-color: var(--gray-disabled);
+    color: var(--second);
+  }
+}
+
+html,
+body {
+  height: 100%;
 }

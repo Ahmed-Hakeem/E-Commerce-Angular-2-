@@ -1,0 +1,55 @@
+<div class="sticky-top category-groups col-1">
+  <div class="list-group">
+    <a
+      class="list-group-item list-group-item-action"
+      (click)="filterProducts(null)"
+      [ngClass]="{ hoveredBtn: currentCategory == null }"
+      >All Categories</a
+    >
+    <a
+      class="list-group-item list-group-item-action"
+      *ngFor="let category of categories$ | async"
+      (click)="filterProducts(category)"
+      [ngClass]="{ hoveredBtn: currentCategory == category }"
+      >{{ category }}</a
+    >
+  </div>
+</div>
+
+<div class="px-20 cardsContainer col-11">
+  <div class="d-flex justify-content-center mb-5">
+    <select
+      class="priceSort d-flex justify-content-center m-0 form-select-sm mx-3"
+      (change)="sortProducts($event)"
+    >
+      <option class="list-group-item" value="{{ sortCases.desc }}">
+        {{ "PriceH2L" | translate }}
+      </option>
+      <option class="list-group-item" value="{{ sortCases.asc }}">
+        {{ "PriceL2H" | translate }}
+      </option>
+    </select>
+    <input
+      class="form-control w-25"
+      type="text"
+      placeholder="{{ 'Search' | translate }}"
+      aria-label="Search"
+      (input)="filterWithSearch($event)"
+    />
+  </div>
+  <div
+    class="d-flex justify-content-center align-items-stretch flex-wrap"
+    *ngIf="!areProductsLoading"
+  >
+    <app-product-card
+      *ngFor="let product of filteredProducts"
+      [product]="product"
+    ></app-product-card>
+  </div>
+  <div
+    *ngIf="areProductsLoading"
+    class="d-flex justify-content-center align-items-stretch"
+  >
+    <span class="spinner-border spinner-border-sm mr-1"></span>
+  </div>
+</div>

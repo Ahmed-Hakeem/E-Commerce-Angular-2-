@@ -1,0 +1,82 @@
+<main class="d-flex">
+  <aside class="d-flex justify-content-center align-items-center logoContainer">
+    <img src="../assets/images/Vodafone-logo.svg.png" alt="" />
+  </aside>
+  <div
+    class="
+      loginContainer
+      container
+      d-flex
+      justify-content-center
+      align-items-center
+    "
+  >
+    <form
+      [formGroup]="loginForm"
+      (ngSubmit)="onSubmit()"
+      novalidate
+      id="loginForm"
+    >
+      <div class="form-group">
+        <label for="userNameInput">{{ "UserName" | translate }}</label>
+        <input
+          id="userNameInput"
+          type="text"
+          class="form-control"
+          formControlName="Username"
+          placeholder="{{ 'UserName' | translate }}"
+        />
+        <small
+          class="form-text text-danger"
+          *ngIf="
+            loginForm.controls.Username.touched &&
+            loginForm.controls.Username.errors?.required
+          "
+        >
+          {{ "UserNameValidationMsg" | translate }}
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputPassword1">{{ "Password" | translate }}</label>
+        <input
+          type="password"
+          class="form-control"
+          formControlName="Password"
+          placeholder="{{ 'Password' | translate }}"
+        />
+        <small
+          class="form-text text-danger"
+          *ngIf="
+            loginForm.controls.Password.touched &&
+            loginForm.controls.Password.errors?.required
+          "
+        >
+          {{ "PasswordValidationMsg" | translate }}
+        </small>
+      </div>
+      <span
+        class="text-danger d-inline-block mb-2"
+        *ngIf="notAuthenticated && submitted"
+      >
+        {{ "LoginNotValid" | translate }}</span
+      >
+      <button
+        type="submit"
+        class="p-2 d-block loginBtn"
+        [disabled]="!loginForm.valid"
+      >
+        {{ "SignIn" | translate }}
+      </button>
+      <p>
+        <span class="text-muted langs" (click)="toggleLang(languages.en)">
+          English</span
+        >
+        |
+        <span class="text-muted langs" (click)="toggleLang(languages.ar)"
+          >عربي</span
+        >
+      </p>
+    </form>
+  </div>
+</main>

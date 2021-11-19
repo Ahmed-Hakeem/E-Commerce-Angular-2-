@@ -1,0 +1,29 @@
+<article class="cards">
+  <div class="imageContainer">
+    <img [src]="product.image" alt="{{ product.title }}" />
+  </div>
+  <h6 class="title" title="{{ product.title }}">
+    {{ product.title | trim: 42 }}
+  </h6>
+  <p class="price">{{ product.price | currency }}</p>
+  <p class="description" title="{{ product.description }}">
+    {{ product.description | trim: 70
+    }}<a
+      class="btn text-primary"
+      (click)="showProductModal()"
+      data-toggle="modal"
+      data-target=".bd-example-modal-lg"
+      >more</a
+    >
+  </p>
+  <p>
+    <span *ngFor="let star of starList">
+      <i class="{{ star }} star-icon"></i>
+    </span>
+  </p>
+  <button class="addToCartBtn">Add to Cart</button>
+</article>
+<app-product-modal
+  *ngIf="productModalShowed"
+  [product]="product"
+></app-product-modal>
